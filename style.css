@@ -1,0 +1,14 @@
+
+body {
+    background-color: #c8eed9;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.content-box {
+    background-color: #f8f4e1;
+    padding: 1em;
+    height: 60%;
+    width: 60vw;
+}
