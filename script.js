@@ -1,4 +1,4 @@
-const moduleGameboard = (() => {
+const gameboard = (() => {
     
     let _gameGrid = [];
     let _gridSize = 9;
@@ -49,7 +49,7 @@ const gameLogic = (() => {
 
     const _playMove = (i) => {
         alert(i.classList[1]);
-        alert(moduleGameboard.getSquare(0).getId());
+        alert(gameboard.getSquare(0).getId());
     }
 
     const initialize = () => {
@@ -59,7 +59,7 @@ const gameLogic = (() => {
         document.querySelectorAll('.game-btn').forEach(i => {
             i.addEventListener('click', () => { _playMove(i) }, false);
             let squareObject = gameSquare(i.classList[1]);
-            moduleGameboard.addSquare(squareObject);
+            gameboard.addSquare(squareObject);
         })
     }
 
