@@ -33,6 +33,12 @@ const gameSquare = (id) => {
     const getSymbol = () => _symbol;
     const setSymbol = (sym) => {
         _symbol = sym;
+        _setHTMLText(sym)
+    }
+
+    const _setHTMLText = (sym) => {
+        let btnTxt = document.createTextNode(sym);
+        document.querySelectorAll('.game-btn')[_sqId].appendChild(btnTxt);
     }
 
     const getId = () => _sqId;
@@ -48,8 +54,8 @@ const gameSquare = (id) => {
 const gameLogic = (() => {
 
     const _playMove = (i) => {
-        alert(i.classList[1]);
-        alert(gameboard.getSquare(0).getId());
+        // X hard-coded, change this later
+        gameboard.getSquare(i.classList[1]).setSymbol('X');
     }
 
     const initialize = () => {
