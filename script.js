@@ -53,13 +53,32 @@ const gameSquare = (id) => {
 
 const gameLogic = (() => {
 
+    let _playerTurn = true;
+    let _playerSym = "";
+
     const _playMove = (i) => {
         // X hard-coded, change this later
         gameboard.getSquare(i.classList[1]).setSymbol('X');
+        _toggleTurn();
+    }
+
+    const _toggleTurn = () => {
+        if (_playerTurn === true) {
+            _playerTurn = false;
+        } else {
+            _playerTurn = true;
+        }
+    }
+
+    const _pcMove = () => {
+        // Contains the logic for the computer player to mark the grid.
+    }
+
+    const _pickSymbol = (sym) => {
+        _playerSym = sym;
     }
 
     const initialize = () => {
-
         // Set DOM objects to interact with gameSquare objects
         // Next, push square objects to the gameGrid
         document.querySelectorAll('.game-btn').forEach(i => {
@@ -67,6 +86,17 @@ const gameLogic = (() => {
             let squareObject = gameSquare(i.classList[1]);
             gameboard.addSquare(squareObject);
         })
+
+        oBtn = document.getElementsByClassName('selector o');
+        xBtn = document.getElementsByClassName('selector x');
+
+        Array.from(oBtn).forEach(i => {
+            i.addEventListener('click', () => { _pickSymbol('o') });
+        });
+        Array.from(xBtn).forEach(i => {
+            i.addEventListener('click', () => { _pickSymbol('x') });
+        });
+
     }
 
     // Note, module functions should be returned as an object
