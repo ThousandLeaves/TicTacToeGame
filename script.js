@@ -1,7 +1,12 @@
 const gameboard = (() => {
     
     let _gameGrid = [];
-    let _gridSize = 9;
+    let _xGrid = [];
+    let _oGrid = [];
+    const MASTER_GRID_SIZE = 9
+    let _xGridSize = MASTER_GRID_SIZE;
+    let _oGridSize = MASTER_GRID_SIZE;
+    let _gridSize = MASTER_GRID_SIZE;
 
     // Set gameboard grid when player interacts in DOM
     const setGridElems = () => {
@@ -12,6 +17,28 @@ const gameboard = (() => {
         _gameGrid.push(square)
     }
 
+    // Returns true if an X or O is observed to have 3 in a row
+    const analyzeGrid = (sym) => {
+        let g = _gameGrid;
+        
+        // Run through grid and set vals to true if sym and false otherwise
+
+        if (g[0] && g[1] && g[2]) {
+
+        } 
+    }
+
+    const setSquare = (id, sym) => {
+        _gameGrid[id] = sym;
+        console.log(_gameGrid[id]);
+        // Log same element into corresponding symbol exclusive grid
+        if(sym === 'X') {
+            _xGrid[id] = sym;
+        } else {
+            _oGrid[id] = sym;
+        }
+    }
+
     const getGridSize = () => _gridSize;
 
     const getSquare = (id) => _gameGrid[id];
@@ -19,7 +46,9 @@ const gameboard = (() => {
     return {
         addSquare,
         getGridSize,
-        getSquare
+        getSquare,
+        setSquare,
+        analyzeGrid
     }
 
 })();
@@ -70,6 +99,7 @@ const gameLogic = (() => {
         console.log(getPlayerTurn());
         if (getPlayerTurn() === true) {
             gameboard.getSquare(i.classList[1]).setSymbol(getSymbol());
+            gameboard.setSquare(i.classList[1], getSymbol());
             _toggleTurn();
         }
     }
@@ -100,6 +130,10 @@ const gameLogic = (() => {
         return _playerTurn;
     }
 
+    const checkForWin = () => {
+
+    }
+
     const initialize = () => {
         // Set DOM objects to interact with gameSquare objects
         // Next, push square objects to the gameGrid
@@ -125,7 +159,8 @@ const gameLogic = (() => {
     return {
             initialize,
             getSymbol,
-            getPlayerTurn
+            getPlayerTurn,
+            checkForWin
            };
 })();
 
