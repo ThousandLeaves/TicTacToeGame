@@ -50,21 +50,35 @@ const gameSquare = (id) => {
     }
 };
 
+const AIaction = (() => {
+    const playTurn = () => {
+
+    }
+
+    return {
+        playTurn
+    };
+})();
 
 const gameLogic = (() => {
 
     let _playerTurn = true;
-    let _playerSym = "";
+    // Default is X
+    let _playerSym = "X";
 
     const _playMove = (i) => {
-        // X hard-coded, change this later
-        gameboard.getSquare(i.classList[1]).setSymbol('X');
-        _toggleTurn();
+        console.log(getPlayerTurn());
+        if (getPlayerTurn() === true) {
+            gameboard.getSquare(i.classList[1]).setSymbol(getSymbol());
+            _toggleTurn();
+        }
     }
 
     const _toggleTurn = () => {
         if (_playerTurn === true) {
             _playerTurn = false;
+            // Call AI turn when === false
+            AIaction.playTurn();
         } else {
             _playerTurn = true;
         }
@@ -76,6 +90,14 @@ const gameLogic = (() => {
 
     const _pickSymbol = (sym) => {
         _playerSym = sym;
+    }
+
+    const getSymbol = () => {
+        return _playerSym;
+    }
+
+    const getPlayerTurn = () => {
+        return _playerTurn;
     }
 
     const initialize = () => {
@@ -91,17 +113,19 @@ const gameLogic = (() => {
         xBtn = document.getElementsByClassName('selector x');
 
         Array.from(oBtn).forEach(i => {
-            i.addEventListener('click', () => { _pickSymbol('o') });
+            i.addEventListener('click', () => { _pickSymbol('O') });
         });
         Array.from(xBtn).forEach(i => {
-            i.addEventListener('click', () => { _pickSymbol('x') });
+            i.addEventListener('click', () => { _pickSymbol('X') });
         });
 
     }
 
     // Note, module functions should be returned as an object
     return {
-            initialize
+            initialize,
+            getSymbol,
+            getPlayerTurn
            };
 })();
 
