@@ -1,3 +1,8 @@
+let mySolutions = [
+    [0,1,3],[3,4,5],[6,7,8],[0,3,6],
+    [1,4,7],[2,5,8],[0,4,8],[2,4,6]
+]
+
 const gameboard = (() => {
     
     let _gameGrid = [];
@@ -7,6 +12,10 @@ const gameboard = (() => {
     let _xGridSize = MASTER_GRID_SIZE;
     let _oGridSize = MASTER_GRID_SIZE;
     let _gridSize = MASTER_GRID_SIZE;
+    let _solutions = [
+        [0,1,2],[3,4,5],[6,7,8],[0,3,6],
+        [1,4,7],[2,5,8],[0,4,8],[2,4,6]
+    ]
 
     // Set gameboard grid when player interacts in DOM
     const setGridElems = () => {
@@ -19,13 +28,23 @@ const gameboard = (() => {
 
     // Returns true if an X or O is observed to have 3 in a row
     const analyzeGrid = (sym) => {
-        let g = _gameGrid;
-        
+            let grid = [];
+        if (sym === 'X') {
+            let grid = _xGrid;
+        } else {
+            let grid = _oGrid;
+        }
+
+        // Checks gameboard for whether X or O has a winning pattern
+        for (i of _solutions) {
+            if(grid[i[0]] && grid[i[1]] && grid[i[2]]) {
+                // TicTacToe found for specified symbol!
+                return true;
+            }
+        }
+        return false;
+
         // Run through grid and set vals to true if sym and false otherwise
-
-        if (g[0] && g[1] && g[2]) {
-
-        } 
     }
 
     const setSquare = (id, sym) => {
@@ -165,5 +184,3 @@ const gameLogic = (() => {
 })();
 
 gameLogic.initialize();
-
-
