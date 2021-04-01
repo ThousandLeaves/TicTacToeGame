@@ -1,8 +1,6 @@
-let mySolutions = [
-    [0,1,3],[3,4,5],[6,7,8],[0,3,6],
-    [1,4,7],[2,5,8],[0,4,8],[2,4,6]
-]
-
+// ============================================================================
+// [ ] MODULE: gameboard
+// ----------------------------------------------------------------------------
 const gameboard = (() => {
     
     let _gameGrid = [];
@@ -22,6 +20,7 @@ const gameboard = (() => {
 
     }
 
+    // Populates the grid array with square objects at start of gasme
     const addSquare = (square) => {
         _gameGrid.push(square)
     }
@@ -47,6 +46,7 @@ const gameboard = (() => {
         // Run through grid and set vals to true if sym and false otherwise
     }
 
+    // Sets a square object to hold a specific X or O value
     const setSquare = (id, sym) => {
         _gameGrid[id] = sym;
         console.log(_gameGrid[id]);
@@ -72,7 +72,11 @@ const gameboard = (() => {
 
 })();
 
-// GameSquare object, 9 total pushed to Gameboard
+
+// ============================================================================
+// ( ) FACTORY: gameSquare
+// ----------------------------------------------------------------------------
+// gameSquare object, 9 total pushed to Gameboard
 const gameSquare = (id) => {
     let _sqId = id;
     let _symbol = "";
@@ -98,9 +102,13 @@ const gameSquare = (id) => {
     }
 };
 
+// ============================================================================
+// [ ] MODULE: AIaction
+// ----------------------------------------------------------------------------
+// Logic to play opposing shape to player. Runs when player turn === false
 const AIaction = (() => {
     const playTurn = () => {
-
+        
     }
 
     return {
@@ -108,6 +116,9 @@ const AIaction = (() => {
     };
 })();
 
+// ============================================================================
+// [ ] MODULE: gameLogic
+// ----------------------------------------------------------------------------
 const gameLogic = (() => {
 
     let _playerTurn = true;
@@ -183,4 +194,6 @@ const gameLogic = (() => {
            };
 })();
 
+
+// ----------------------------------------------------------------------------
 gameLogic.initialize();
