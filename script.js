@@ -46,6 +46,31 @@ const gameboard = (() => {
         // Run through grid and set vals to true if sym and false otherwise
     }
 
+    // Returns the next free square
+    const scanFreeSquare = (current = 0) => {
+        for (i = current; i < MASTER_GRID_SIZE; i++) {
+            if (_gameGrid[i].getSymbol() === "") {
+                // Space  is free, check if neighboring symbols are free
+                if (_gameGrid[i + 1].getSymbol() === "" &&
+                _gameGrid[i + 2].getSymbol() === "") {
+                    // Do a thing
+                } else if (_gameGrid[i + 3].getSymbol() === "" &&
+                _gameGrid[i + 6].getSymbol() === "") {
+                    // Do another thing vertically
+                }
+            }
+            break;
+        }
+    }
+
+    const isInBounds = (num, offset) => {
+        if (num + offset <= MASTER_GRID_SIZE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // Sets a square object to hold a specific X or O value
     const setSquare = (id, sym) => {
         _gameGrid[id] = sym;
@@ -108,7 +133,8 @@ const gameSquare = (id) => {
 // Logic to play opposing shape to player. Runs when player turn === false
 const AIaction = (() => {
     const playTurn = () => {
-        
+        // Scan grid for free square
+        gameboard.scanFreeSquare();
     }
 
     return {
