@@ -46,6 +46,23 @@ const gameboard = (() => {
         // Run through grid and set vals to true if sym and false otherwise
     }
 
+    // Scans specified row to seek whether it is viable for AI to place its 'O' marker
+    const scanRow = (row = 0) => {
+        // compatibleCellCt must be equal to 3 for a move in current row to be possible
+        let compatibleCellCt = 0;
+        for (let i = row * 1; i < row + 3; i++) {
+            if (_gameGrid[i] !== 'X' ) {
+                compatibleCellCt++;
+            }
+        }
+        if (compatibleCellCt === 3) {
+            // Call scanFreeSquare
+        } else if (row === 0) {
+            // Seek columns for free cells if evaluating first row
+        }
+    }
+
+    /*
     // Returns the next free square
     const scanFreeSquare = (current = 0) => {
         for (i = current; i < MASTER_GRID_SIZE; i++) {
@@ -62,7 +79,9 @@ const gameboard = (() => {
             break;
         }
     }
+    */
 
+    // Uh oh, probably should have commented this. What does it do?
     const isInBounds = (num, offset) => {
         if (num + offset <= MASTER_GRID_SIZE) {
             return true;
@@ -92,7 +111,8 @@ const gameboard = (() => {
         getGridSize,
         getSquare,
         setSquare,
-        analyzeGrid
+        analyzeGrid,
+        //scanFreeSquare
     }
 
 })();
